@@ -2,7 +2,7 @@
 
 A little toy to explore the possibilties of combining [Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401) with [Knowledge Graphs](https://docs.llamaindex.ai/en/stable/examples/index_structs/knowledge_graph/KnowledgeGraphDemo.html).
 
-The idea is to have a generative language model to awnser questions exclusively on the basis of the provided sources. 
+The idea is to have a generative language model awnser questions exclusively on the basis of the provided sources. 
 
 An interactive minimalist example with a web interface is provided. 
 
