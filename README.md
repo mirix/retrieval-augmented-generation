@@ -14,7 +14,7 @@ The English translation of The Little Prince in PDF format is provided as an exa
 
 CAVEATS
 
-- This is not a search engine. You may need a bit of trial-and-error prompt engeneering in order to get the right answers.
+- This is not a search engine. You may need a bit of trial-and-error prompt engineering in order to get the right answers.
   
 - This is not a chatbot as it does not keep any memory of the conversatio threat. It is just for question/answer.
 
