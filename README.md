@@ -20,6 +20,6 @@ CAVEATS
 
 - Only plain text is correctly parsed. Images, tables and graphs will be ignored at this point.
 
-- Generating the Knowledge graphs is very time consuming. Be patient. In theory, the graphs can be saved and reloaded (not tested). As far as the app is up, they are stored in memory.
+- Generating the Knowledge graphs is very time consuming. Be patient. In theory, the graphs can be saved and reloaded (not tested). As long as the app is up, they are stored in memory.
 
 - With the current model [solar-10.7b-instruct-v1.0.Q6_K.gguf](https://huggingface.co/TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF), you will need a GPU with, at the very least, 16GB of RAM. But you can switch to a smaller model. 
