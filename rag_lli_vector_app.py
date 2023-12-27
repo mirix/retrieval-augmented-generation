@@ -62,7 +62,7 @@ embed_model = HuggingFaceEmbedding(model_name='thenlper/gte-large')
 ### CONTEX ##
 
 service_context = ServiceContext.from_defaults(
-    chunk_size=3072,
+    chunk_size=256,
     llm=llm,
     embed_model=embed_model
 )
