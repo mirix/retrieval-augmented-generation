@@ -1,6 +1,6 @@
-# RAG with Knowledge Graphs
+# Retrieval-Augmented Generation (RAG)
 
-A little toy to explore the possibilties of combining [Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401) with [Knowledge Graphs](https://docs.llamaindex.ai/en/stable/examples/index_structs/knowledge_graph/KnowledgeGraphDemo.html).
+A little toy to explore the possibilties of [Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401).
 
 The idea is to have a generative language model awnser questions exclusively on the basis of the provided sources. 
 
@@ -16,10 +16,8 @@ CAVEATS
 
 - This is not a search engine. You may need a bit of trial-and-error with prompt engineering in order to get the right answers.
   
-- This is not a chatbot as it does not keep any memory of the conversation threat. It is just for questions/answers.
+- This is not a chatbot as it does not keep any memory of the conversation threat. It is just for Q&A.
 
 - Only plain text is correctly parsed. Images, tables and graphs will be ignored at this point.
 
-- Generating the Knowledge graphs is very time consuming. Be patient. In theory, the graphs can be saved and reloaded (not tested). As long as the app is up, they are stored in memory.
-
-- With the current model [solar-10.7b-instruct-v1.0.Q6_K.gguf](https://huggingface.co/TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF), you will need a GPU with, at the very least, 16GB of RAM. But you can switch to a smaller model. 
+- With the current model [tulu-2-dpo-13b.Q8_0.gguf](https://huggingface.co/TheBloke/tulu-2-dpo-13B-GGUF), you will need a GPU with, at the very least, 20GB of RAM. But you can switch to a smaller model. 
