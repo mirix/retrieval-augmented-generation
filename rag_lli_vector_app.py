@@ -37,11 +37,9 @@ def home():
 
 ### MODEL ###
 
-name = 'allenai/tulu-2-dpo-13b'
-
-model_name = 'TheBloke/tulu-2-dpo-13B-GGUF'
-#model_file = 'solar-10.7b-instruct-v1.0.Q4_K_M.gguf'
-model_file = 'tulu-2-dpo-13b.Q8_0.gguf'
+name = 'allenai/tulu-2-dpo-7b'
+model_name = 'TheBloke/tulu-2-dpo-7B-GGUF'
+model_file = 'tulu-2-dpo-7b.Q5_K_M.gguf'
 
 model = AutoModelForCausalLM.from_pretrained(model_name, model_file=model_file, context_length=4096, gpu_layers=512, hf=True)
 											
