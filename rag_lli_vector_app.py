@@ -7,10 +7,14 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1,0"
 
 from flask import Flask, render_template, request
 
+import fitz
+from unidecode import unidecode
+
 from ctransformers import AutoModelForCausalLM
 from transformers import AutoTokenizer
 
-from llama_index import (ServiceContext,
+from llama_index import (Document,
+                         ServiceContext,
                          VectorStoreIndex,
                          set_global_service_context,
                          SimpleDirectoryReader)
@@ -62,7 +66,7 @@ embed_model = HuggingFaceEmbedding(model_name='thenlper/gte-large')
 ### CONTEX ##
 
 service_context = ServiceContext.from_defaults(
-    chunk_size=256,
+    chunk_size=200,
     llm=llm,
     embed_model=embed_model
 )
@@ -71,10 +75,32 @@ set_global_service_context(service_context)
 
 # Documents 
 
-#documents = SimpleDirectoryReader(data_folder).load_data()
-reader = SimpleDirectoryReader(input_dir='./pdf/')
-documents = reader.load_data()
-print('Number of pages:', len(documents))
+pdf_path = 'pdf/The_Little_Prince_Antoine_de_Saint_Exupery.pdf'
+
+stops = ['.', '!', '?', ':', '"']
+
+doc = fitz.open(pdf_path)
+
+paragraphs = []
+for page in doc:
+	blocks = page.get_text('blocks')
+	for block in blocks:
+		paragraph = unidecode(block[4]).replace('\n', ' ').strip()
+		if not paragraph.startswith('<image: ') and not paragraph.endswith('.jpg'):
+			paragraphs.append(paragraph)
+			
+			
+merged_paragraphs = paragraphs[:1]
+for p in paragraphs[1:]:
+	if merged_paragraphs[-1][-1] not in stops:
+		merged_paragraphs[-1] = merged_paragraphs[-1] + ' ' + p
+	else:
+		merged_paragraphs.append(p)
+	
+text = '\n\n'.join(merged_paragraphs)
+
+documents = [Document(text=text)]
+print('Number of documents:', len(documents))
 
 # Vector Index
 
