@@ -65,9 +65,9 @@ model_file = 'tulu-2-dpo-7b.Q5_K_M.gguf'
 
 # Set the gpu_layers according to your system. In this case, my system does not use more than 35. 0 means no GPU, CPU-only
 # Llama 2 models such as Tulu, can by default handle a maximum of 4096 tokens. But there are models with longer context window out there.
-model = AutoModelForCausalLM.from_pretrained(model_name, model_file=model_file, context_length=4096, gpu_layers=512, hf=True)
+model = AutoModelForCausalLM.from_pretrained(model_name, model_file=model_file, context_length=4096, gpu_layers=512, seed=0, hf=True)
 											
-tokenizer = AutoTokenizer.from_pretrained(name)
+tokenizer = AutoTokenizer.from_pretrained(name, legacy=False)
 
 # Current models very sensitive to the wording of the system prompt (and the prompt in general).
 # Finding the right working may take some trial-and-error. Some call this "prompt engineering". 
@@ -82,13 +82,16 @@ llm = HuggingFaceLLM(
 	query_wrapper_prompt=PromptTemplate(prompt_template),
 	context_window=3072,
 	max_new_tokens=256,
-	tokenizer_kwargs={'max_length': 4096},
+	tokenizer_kwargs={'max_length': 4096, 'legacy': False},
 	# Set the gpu_layers according to your system. In this case, my system does not use more than 35. 0 means no GPU, CPU-only
 	# If hyperthreading is not activated in your system you can remove the //2
-	model_kwargs={'n_gpu_layers': 512, 'n_threads': n_cores//2},
+	# You can set the seed for reproducibility
+	model_kwargs={'n_gpu_layers': 512, 'n_threads': n_cores//2, 'seed': 0},
 	# Here you can play with temperature, top_p, etc.
-	# This will tune how creative the response can get.
-	#generate_kwargs={"temperature": 0.7},
+	# This will tune how creative the response can get. 
+	# The higher the values, the more creative (and therefore hallucination-prone)
+	# In this case, we prefer a very conservative response.
+	generate_kwargs={'do_sample': True, 'temperature': 0.0000001, 'top_p': 0.0000001, 'top_k': 1},
 	)
 
 # The embedding model can be decisive for the quality of the retrieval phase.
@@ -102,7 +105,7 @@ embed_model = HuggingFaceEmbedding(model_name='thenlper/gte-large')
 # The longer, the more resources the app will use.
 # Rule of thumb:
 # Smaller chunk size -> More information will be retreived.
-# Longer chunk size -> More connections between distant pieces of information (if your model is good enough).
+# Longer chunk size -> More cwantonnections between distant pieces of information (if your model is good enough).
 # Here we are using small models so we go for the smallest possible size.
 
 service_context = ServiceContext.from_defaults(
