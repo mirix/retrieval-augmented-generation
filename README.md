@@ -20,4 +20,4 @@ CAVEATS
 
 - Only plain text is correctly parsed. Images, tables and graphs will be ignored at this point.
 
-- With the current model [tulu-2-dpo-13b.Q8_0.gguf](https://huggingface.co/TheBloke/tulu-2-dpo-13B-GGUF), you will need a GPU with, at the very least, 20GB of RAM. But you can switch to a smaller model. 
+- With the current model [tulu-2-dpo-7b.Q5_K_M.gguf'](https://huggingface.co/TheBloke/tulu-2-dpo-7B-GGUF), you will need a GPU with, at the very least, 8GB of RAM. But you can switch to a smaller model. 
