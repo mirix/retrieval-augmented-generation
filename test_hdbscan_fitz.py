@@ -2,6 +2,7 @@
 # encompassing all the text except headers and footers.
 # This script is work in progress
 # It works for the provided example
+# https://links.imagerelay.com/cdn/2958/ql/general-terms-and-conditions-sqbe-en
 # For a more robust heuristic version, 
 # you may want to play with the 3 variables below
 # (in capital letters)
