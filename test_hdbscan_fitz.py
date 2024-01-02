@@ -82,6 +82,9 @@ print(df_group)
 # STANDARD DEVIATION #
 std = 0 
 
+# We also asume that the cluster size is equal or lower to the number of pages
+# (this is not alway true)
+
 footer = np.floor(df_group[(np.floor(df_group['std_y0']) == std) & (np.floor(df_group['std_y1']) == std) & (df_group['min_y0'] >= upper) & (df_group['cluster_size'] <= n_pages)]['min_y0'].min())
 header = np.ceil(df_group[(np.floor(df_group['std_y0']) == std) & (np.floor(df_group['std_y1']) == std) & (df_group['min_y1'] <= lower) & (df_group['cluster_size'] <= n_pages)]['min_y1'].max())
 
