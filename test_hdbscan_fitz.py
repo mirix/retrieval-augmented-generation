@@ -76,13 +76,13 @@ df_group = df_group.sort_values(['avg_y0', 'avg_y1'], ascending=[True, True])
 print(df_group)
 
 # We assume that theaders and footers are located outside the 85 % quantiles
-# and that the are located always at the same positions (standard deviation nearly zero)
+# and that they are located always at the same positions (standard deviation nearly zero)
 
 # STANDARD DEVIATION #
 std = 0 
 
-footer = np.floor(df_group[(np.floor(df_group['std_y0']) == std) & (np.floor(df_group['std_y1']) == std) & (df_group['min_y0'] >= upper)]['min_y0'].min())
-header = np.ceil(df_group[(np.floor(df_group['std_y0']) == std) & (np.floor(df_group['std_y1']) == std) & (df_group['min_y1'] <= lower)]['min_y1'].max())
+footer = np.floor(df_group[(np.floor(df_group['std_y0']) == std) & (np.floor(df_group['std_y1']) == std) & (df_group['min_y0'] >= upper) & (df_group['cluster_size'] <= n_pages)]['min_y0'].min())
+header = np.ceil(df_group[(np.floor(df_group['std_y0']) == std) & (np.floor(df_group['std_y1']) == std) & (df_group['min_y1'] <= lower) & (df_group['cluster_size'] <= n_pages)]['min_y1'].max())
 
 # If there is a footer, exclude it
 if not pd.isnull(footer):
