@@ -78,7 +78,7 @@ llm = HuggingFaceLLM(
 	tokenizer=tokenizer, 
 	query_wrapper_prompt=PromptTemplate(prompt_template),
 	context_window=3072,
-	max_new_tokens=256,
+	max_new_tokens=512,
 	tokenizer_kwargs={'max_length': 4096, 'legacy': False},
 	# Set the gpu_layers according to your system. In this case, my system does not use more than 35. 0 means no GPU, CPU-only
 	# If hyperthreading is not activated in your system you can remove the //2
@@ -161,7 +161,7 @@ index = VectorStoreIndex.from_documents(documents)
 
 ### QUERY ###
 
-query_engine = index.as_query_engine(streaming=True)
+query_engine = index.as_query_engine()
 
 ### APP FUNCTION ###
 
@@ -172,9 +172,12 @@ def get_bot_response():
 	except NameError: msg = ''
 	
 	prompt = request.args.get('msg')
-	response = query_engine.query(prompt)
+	response = str(query_engine.query(prompt))
 	
-	return Response(response.response_gen)
+	if response[-1] != '.':
+		response = '.'.join(response.split('.')[:-1]) + '.'
+	
+	return response
 
 # Open the URLs indicated in the console output in your browser.
 # You can choose another port.
