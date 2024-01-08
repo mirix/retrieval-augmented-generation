@@ -6,7 +6,7 @@ The idea is to have a generative language model awnser questions exclusively on 
 
 An interactive minimalist example with a web interface is provided. 
 
-It relies on Flask, transformers, ctransformers and Llama Index.
+It relies on Flask, transformers and Llama Index.
 
 Two different scripts are provided:
 
