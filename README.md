@@ -8,9 +8,13 @@ An interactive minimalist example with a web interface is provided.
 
 It relies on Flask, transformers, ctransformers and Llama Index.
 
-Other modules may be needed depending on the format of the sources (PDF, DOCX, CSV, etc).
+Two different scripts are provided:
 
-The English translation of The Little Prince in PDF format is provided as an example.
+1. rag_llama_index_tulu_app uses the English translation of The Little Prince in PDF format as source material [tulu-2-dpo-7b.Q5_K_M.gguf](https://huggingface.co/TheBloke/tulu-2-dpo-7B-GGUF) as language model. This is an early approach and it is slow and inefficient. I keep it here for reference.
+
+2. rag_llama_index_AWQ_tiny_app uses SQE's Terms and Conditions as source material and [dolphin-2.6-mistral-7B-dpo-AWQ](https://huggingface.co/TheBloke/dolphin-2.6-mistral-7B-dpo-AWQ) as language model. This approach is much faster and more efficient in every aspect (retrieval, reranking, etc.). 
+
+
 
 CAVEATS
 
@@ -20,4 +24,4 @@ CAVEATS
 
 - Only plain text is correctly parsed. Images, tables and graphs will be ignored at this point.
 
-- With the current model [tulu-2-dpo-7b.Q5_K_M.gguf'](https://huggingface.co/TheBloke/tulu-2-dpo-7B-GGUF), you will need a GPU with, at the very least, 8GB of RAM. But you can switch to a smaller model. 
+- With the current GUFF model you will need a GPU with, at the very least, 8GB of RAM. But you can switch to a smaller GGUF model. The AWQ model is smaller.
