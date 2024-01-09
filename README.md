@@ -8,12 +8,13 @@ An interactive minimalist example with a web interface is provided.
 
 It relies on Flask, transformers and Llama Index.
 
-Two different scripts are provided:
+Three different scripts are provided:
 
-1. rag_llama_index_tulu_app uses the English translation of The Little Prince in PDF format as source material [tulu-2-dpo-7b.Q5_K_M.gguf](https://huggingface.co/TheBloke/tulu-2-dpo-7B-GGUF) as language model. This is an early approach and it is slow and inefficient. I keep it here for reference.
+1. rag_llama_index_AWQ_tiny_app uses SQE's Terms and Conditions as source material and [dolphin-2.6-mistral-7B-dpo-AWQ](https://huggingface.co/TheBloke/dolphin-2.6-mistral-7B-dpo-AWQ) as language model. This approach is much faster and more efficient in every aspect (retrieval, reranking, etc.). Recommended.
 
-2. rag_llama_index_AWQ_tiny_app uses SQE's Terms and Conditions as source material and [dolphin-2.6-mistral-7B-dpo-AWQ](https://huggingface.co/TheBloke/dolphin-2.6-mistral-7B-dpo-AWQ) as language model. This approach is much faster and more efficient in every aspect (retrieval, reranking, etc.). 
+2. rag_llama_index_tulu_app uses the English translation of The Little Prince in PDF format as source material [tulu-2-dpo-7b.Q5_K_M.gguf](https://huggingface.co/TheBloke/tulu-2-dpo-7B-GGUF) as language model. This is an early approach using GGUF and it is slow and inefficient. I keep it here for reference.
 
+3. The exllamav2 script is highly experimental work in progress. It relies on [exl2-for-all](https://github.com/chu-tianxiang/exl2-for-all), but this library does not work out of the box for RAG and needs to be hacked. Working but currently only on one GPU and slower than AWQ. 
 
 
 CAVEATS
