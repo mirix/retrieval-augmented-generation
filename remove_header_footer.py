@@ -63,7 +63,12 @@ def remove_hf(pdf_path):
 	# HEADER/FOOTER FREQUENCY #
 	hff = 0.8
 	
-	hdbscan = HDBSCAN(min_cluster_size = int(np.floor(n_pages * hff)))
+	min_clust = min_cluster_size = int(np.floor(n_pages * hff))
+	
+	if min_clust < 2:
+		min_clust = 2
+	
+	hdbscan = HDBSCAN(min_cluster_size = min_clust)
 	df['clusters'] = hdbscan.fit_predict(df)
 	
 	# For each cluster, compute min, max and average
