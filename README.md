@@ -25,4 +25,4 @@ CAVEATS
 
 - Only plain text is correctly parsed. Images, tables and graphs will be ignored at this point.
 
-- With the current GUFF model you will need a GPU with, at the very least, 8GB of RAM. But you can switch to a smaller GGUF model. The AWQ model is smaller.
+- With the current GGUF model you will need a GPU with, at the very least, 8GB of RAM. But you can switch to a smaller GGUF model. The AWQ model is smaller.
