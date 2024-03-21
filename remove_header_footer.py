@@ -22,6 +22,9 @@ def remove_hf(pdf_path):
 	# Count pages
 	n_pages = document.page_count
 	
+	if n_pages == 1:
+		document.insert_file(pdf_path) 
+	
 	# Extract the coordinates of each block (paragraph)
 	coordinates = {'x0': [], 'y0': [], 'x1': [], 'y1': []}
 	for page in document:
